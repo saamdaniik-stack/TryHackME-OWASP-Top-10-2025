@@ -10,7 +10,8 @@
 1. If you don't get access to more roles but can view the data of another users, what type of privilege escalation is this?
 
 `Answer: Horizontal`
-3. What is the note you found when viewing the user's account who had more than $ 1 million?
+
+2. What is the note you found when viewing the user's account who had more than $ 1 million?
 
 `Flag: THM{Found.the.Millionare!}`
 #### Writeup:
@@ -22,7 +23,7 @@ The site has an IDOR vulnerability—changing the ID from 5 to 7 allows access t
 ### A07: Authentication Failures
 
 1. What is the flag on the admin user's dashboard?
-2. 
+
 `Flag: THM{Account.confusion.FTW!}`
 
 #### Writeup:
