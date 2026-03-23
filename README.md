@@ -94,4 +94,39 @@ So our value is debug, which reveals the flag.
 Flag: `THM{SUPPLY_CH41N_VULN3R4B1L1TY}`
 
 
+### AS04: Cryptographic Failures
 
+`Nzd42HZGgUIUlpILZRv0jeIXp1WtCErwR+j/w/lnKbmug31opX0BWy+pwK92rkhjwdf94mgHfLtF26X6B3pe2fhHXzIGnnvVruH7683KwvzZ6+QKybFWaedAEtknYkhe`
+<img width="1365" height="528" alt="image" src="https://github.com/user-attachments/assets/b797e637-d62a-4089-b35f-5b40036baafe" />
+
+Anaylsing the source code we can see a js file called decrypt.js which revealed the secret key and algorithm of the encryption
+
+<img width="1365" height="604" alt="image" src="https://github.com/user-attachments/assets/759996f6-b01e-4d46-9184-9914061345ca" />
+
+Now lets decrypt it using decryptors in online like `https://www.devglan.com/online-tools/aes-encryption-decryption`
+
+<img width="1365" height="680" alt="image" src="https://github.com/user-attachments/assets/fd4ecf32-25eb-4130-95dc-7f95bec99955" />
+
+Flag: `THM{CRYPTO_FAILURE_H4RDCOD3D_K3Y}`
+
+### AS06: Insecure Design
+
+Hitting `/api/users/admin` this endpoint reveals
+
+<img width="1365" height="596" alt="image" src="https://github.com/user-attachments/assets/cfd464b5-13f3-4f12-8629-5928a5ee61a7" />
+
+We can see /api/users/admin gives some data lets try fuzzing the endpoint after /api/ with /admin maybe we can get endpoints like `/api/profile/admin` or `/api/data/admin`
+
+Fuzzing with ffuf:
+
+Command:
+
+`ffuf -u http://10.49.154.138:5005/api/FUZZ/admin -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt`
+
+We get /messages endpoints which reveals the flag:
+
+<img width="1365" height="640" alt="image" src="https://github.com/user-attachments/assets/741dca31-4c94-4e00-b31e-620b3de4bfb7" />
+
+Flag: `THM{1NS3CUR3_D35IGN_4SSUMPT10N}`
+
+## Insecure Data Handling
